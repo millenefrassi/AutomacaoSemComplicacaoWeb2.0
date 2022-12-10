@@ -8,6 +8,15 @@ import org.openqa.selenium.chrome.ChromeDriver;
 
 import static org.junit.Assert.assertEquals;
 
+//Anotacoes Junit
+//@Test - utilizado para determinar que o método é um teste... sempre antes ou acima do metodos
+//@Ignore - Anotacao para que o teste nao seja executado. Deve ser antes da anotacao @teste
+//@After - anotacao utilizada nos metodos que devem ser executados ao final de cada teste
+//@Before - anotacao utilizada nos metodos que devem ser realizados ao inicio de CADA teste
+//@BeforeClass - anotacao utilizada nos metodos que devem ser realizados antes de TODOS os testes da classe
+//@AfterClass - anotacao utilizada nos metodos que devem ser realizados depois de todos os testes de classe
+//@RunWith - anotacao utilizada para criar uma suite de teste
+
 public class TesteWeb {
 
     @Test
