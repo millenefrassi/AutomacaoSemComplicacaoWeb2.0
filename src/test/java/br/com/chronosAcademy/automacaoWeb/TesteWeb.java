@@ -1,10 +1,12 @@
 package br.com.chronosAcademy.automacaoWeb;
 
+import br.com.chronosAcademy.core.Driver;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 
@@ -21,13 +23,13 @@ import static org.junit.Assert.assertEquals;
 
 public class TesteWeb {
 
-    ChromeDriver driver; //objeto global... qq metodo vai enxergar a variavel
+    WebDriver driver; //objeto global... qq metodo vai enxergar a variavel
+    Driver driverWeb;
 
     @Before
     public void inicializaTeste(){
-        WebDriverManager.chromedriver().setup(); //vai baixar e fazer tudo - webdriverManager eh uma classe
-
-        driver = new ChromeDriver(); //ele que abre o navagador
+        driverWeb = new Driver("chrome");
+        driver = driverWeb.getDriver(); //ele que abre o navagador
         driver.manage().window().maximize();
         driver.get("https://www.chronosacademy.com.br");
     }
