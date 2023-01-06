@@ -1,6 +1,8 @@
 package br.com.chronosAcademy.automacaoWeb;
 
 import br.com.chronosAcademy.core.Driver;
+import br.com.chronosAcademy.pages.CursoPage;
+import br.com.chronosAcademy.pages.PrincipalPage;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.After;
 import org.junit.Before;
@@ -25,6 +27,8 @@ public class TesteWeb {
 
     WebDriver driver; //objeto global... qq metodo vai enxergar a variavel
     Driver driverWeb;
+    PrincipalPage principalPage;
+    CursoPage cursoPage;
 
     @Before
     public void inicializaTeste(){
@@ -32,21 +36,33 @@ public class TesteWeb {
         driver = driverWeb.getDriver(); //ele que abre o navagador
         driver.manage().window().maximize();
         driver.get("https://www.chronosacademy.com.br");
+
+        principalPage = new PrincipalPage(driver);
     }
 
     @Test
     public void primeiroTeste(){
 
-        String xpathTitulo = "//section[2]//h4";
-        // --//section[2]/div[3]/div/div/div/div/div[1]/div/h4
-        // -- //section[2]//h4
-        // -- /html/body/div/div/div/div/div/section[2]/div[3]/div/div/div/div/div[1]/div/h4
-        WebElement txtTitulo = driver.findElement(By.xpath(xpathTitulo));
-        String titulo = txtTitulo.getText();
+        String titulo = principalPage.getTitulo();
         assertEquals("Porque Tempo É Conhecimento", titulo);
 
+    }
+
+
+
+    @Test
+    public void segundoTeste(){
+        principalPage.clickBotao();
+        cursoPage = new CursoPage(driver);
+
+        String titulo = cursoPage.getTitulo2();
+        assertEquals("Conheça todos os nossos cursos", titulo);
 
     }
+
+
+
+
 
     @After
     public void finalizaTeste(){
