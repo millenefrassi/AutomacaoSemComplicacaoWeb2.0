@@ -8,7 +8,7 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 
 public class Driver {
-    private WebDriver driver;
+    private static WebDriver driver;
 
     //se alguém quiser usar, precisa inicializar, instanciar...CONSTRUTOR
     public Driver(String navegador){
@@ -38,7 +38,7 @@ public class Driver {
         driver.manage().window().maximize();
     }
 
-    public WebDriver getDriver(){
+    public static WebDriver getDriver(){
         return driver;
     }
 }
