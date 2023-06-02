@@ -44,6 +44,7 @@ public class LoginPage {
         loginMap.linkCreateAccount.click();
     }
 
+
     public boolean isBtnSignIn(){
         return loginMap.btnSignIn.isEnabled();
     }
