@@ -1,5 +1,6 @@
 package br.com.chronosAcademy.core;
 
+import br.com.chronosAcademy.enums.Browser;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -18,28 +19,25 @@ public class Driver {
     private static WebDriverWait wait;
 
     //se alguém quiser usar, precisa inicializar, instanciar...CONSTRUTOR
-    public Driver(String navegador){
+    public Driver(Browser navegador){
 
         //chrome, ie, firefox, edge
         switch (navegador){
-            case "chrome" :
+            case CHROME:
                 WebDriverManager.chromedriver().setup(); //vai baixar e fazer tudo - webdriverManager eh uma classe
                 driver = new ChromeDriver(); //ele que abre o navagador
                 break;
-            case "ie":
+            case IE:
                 WebDriverManager.iedriver().setup(); //vai baixar e fazer tudo - webdriverManager eh uma classe
                 driver = new InternetExplorerDriver(); //ele que abre o navagador
                 break;
-            case "firefox":
+            case FIREFOX:
                 WebDriverManager.firefoxdriver().setup(); //vai baixar e fazer tudo - webdriverManager eh uma classe
                 driver = new FirefoxDriver(); //ele que abre o navagador
                 break;
-            case "edge":
+            case EDGE:
                 WebDriverManager.edgedriver().setup(); //vai baixar e fazer tudo - webdriverManager eh uma classe
                 driver = new EdgeDriver(); //ele que abre o navagador
-                break;
-            default:
-
                 break;
         }
 

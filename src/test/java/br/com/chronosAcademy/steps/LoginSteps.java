@@ -1,6 +1,7 @@
 package br.com.chronosAcademy.steps;
 
 import br.com.chronosAcademy.core.Driver;
+import br.com.chronosAcademy.enums.Browser;
 import br.com.chronosAcademy.pages.LoginPage;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
@@ -16,7 +17,7 @@ public class LoginSteps {
     LoginPage loginPage;
     @Before
     public void iniciaNavegador(){
-        new Driver("chrome");
+        new Driver(Browser.CHROME);
     }
 
     @After
@@ -26,6 +27,8 @@ public class LoginSteps {
 
     @Dado("que o modal esteja sendo exibida")
     public void queOModalEstejaSendoExibida() {
+        //System.out.println("entrou aqui");
+        System.setProperty("webdriver.http.factory", "jdk-http-client");
         Driver.getDriver().get("https://advantageonlineshopping.com/");
         loginPage = new LoginPage();
         loginPage.clickBtnLogin();
