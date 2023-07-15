@@ -3,6 +3,7 @@ package br.com.chronosAcademy.steps;
 import br.com.chronosAcademy.core.Driver;
 import br.com.chronosAcademy.enums.Browser;
 import br.com.chronosAcademy.pages.LoginPage;
+import br.com.chronosAcademy.pages.NewAccountPage;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import io.cucumber.java.pt.Dado;
@@ -28,10 +29,12 @@ public class LoginSteps {
     @Dado("que o modal esteja sendo exibida")
     public void queOModalEstejaSendoExibida() {
         //System.out.println("entrou aqui");
-        System.setProperty("webdriver.http.factory", "jdk-http-client");
+        //System.setProperty("webdriver.http.factory", "jdk-http-client");
         Driver.getDriver().get("https://advantageonlineshopping.com/");
         loginPage = new LoginPage();
         loginPage.clickBtnLogin();
+        loginPage.visibilityOfBtnFechar();
+        loginPage.aguardaLoader();
     }
     @Quando("for realizado um clique fora da modal")
     public void forRealizadoUmCliqueForaDaModal() {
@@ -58,9 +61,11 @@ public class LoginSteps {
         loginPage.clickLinkCreateAccount();
     }
 
+
     @Entao("a pagina Create New Account deve ser exibida")
     public void aPaginaCreateNewAccountDeveSerExibida() {
-
+        NewAccountPage newAccountPage = new NewAccountPage();
+        Assert.assertEquals("CREATE ACCOUNT", newAccountPage.getTextNewAccount());
     }
 
     @Quando("os campos de login forem preenchidos da seguinte forma")
@@ -70,8 +75,12 @@ public class LoginSteps {
         String password = map.get("password");
         Boolean remember = Boolean.parseBoolean(map.get("remember"));
 
-        loginPage.setInpUserName(username);
-        loginPage.setInpPassword(password);
+        if(username != null){
+            loginPage.setInpUserName(username);
+        }
+        if(password != null){
+            loginPage.setInpPassword(password);
+        }
 
         if(remember)loginPage.clickInpRemember();
     }
