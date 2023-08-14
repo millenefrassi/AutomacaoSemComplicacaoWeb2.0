@@ -4,7 +4,7 @@ Funcionalidade: Login
   Contexto:
     Dado que o modal esteja sendo exibida
 
-@fecharModal
+  @fecharModal
   Cenario: Fechar o modal ao clicar fora da mesma
     Quando for realizado um clique fora da modal
     Entao a janela modal deve ser fechada
@@ -19,6 +19,7 @@ Funcionalidade: Login
     Quando for realizado um clique no link Create New Account
     Entao a pagina Create New Account deve ser exibida
 
+  @loginComSucesso
   Esquema do Cenario: Realizar login com <identificacao>
     Quando os campos de login forem preenchidos da seguinte forma
       | login    | <login>    |
@@ -29,9 +30,10 @@ Funcionalidade: Login
 
     Exemplos:
       | identificacao          | login   | password | remember |
-      | todos os campos        | chronos | senha    | true     |
-      | os campos obrigatorios | chronos | senha    | false    |
+      | todos os campos        | chronos | Senha123 | true     |
+      | os campos obrigatorios | chronos | Senha123 | false    |
 
+    @loginInvalido
   Esquema do Cenario: Realizar login com <identificacao>
     Quando os campos de login forem preenchidos da seguinte forma
       | login    | <login>    |
@@ -42,10 +44,10 @@ Funcionalidade: Login
 
     Exemplos:
       | identificacao    | login    | password | remember |
-      | usuario invalido | invalido | senha    | true     |
+      | usuario invalido | invalido | Senha123 | true     |
       | senha invalida   | chronos  | invalido | true     |
 
-@dadosEmBranco
+  @dadosEmBranco
   Esquema do Cenario: Realizar login com <identificacao>
     Quando os campos de login forem preenchidos da seguinte forma
       | login    | <login>    |
@@ -55,5 +57,5 @@ Funcionalidade: Login
 
     Exemplos:
       | identificacao     | login   | password | remember |
-      | usuario em branco |         | senha    | false    |
-      | senha em branco   | chronos |          | false     |
+      | usuario em branco |         | Senha123 | false    |
+      | senha em branco   | chronos |          | false    |

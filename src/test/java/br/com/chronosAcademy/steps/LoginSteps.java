@@ -16,6 +16,7 @@ import java.util.Map;
 public class LoginSteps {
 
     LoginPage loginPage;
+    String username;
     @Before
     public void iniciaNavegador(){
         new Driver(Browser.CHROME);
@@ -71,7 +72,7 @@ public class LoginSteps {
     @Quando("os campos de login forem preenchidos da seguinte forma")
     public void osCamposDeLoginForemPreenchidosDaSeguinteForma(Map<String, String> map) {
 
-        String username = map.get("login");
+        username = map.get("login");
         String password = map.get("password");
         Boolean remember = Boolean.parseBoolean(map.get("remember"));
 
@@ -82,6 +83,7 @@ public class LoginSteps {
             loginPage.setInpPassword(password);
         }
 
+        loginPage.aguardaLoader();
         if(remember)loginPage.clickInpRemember();
     }
 
@@ -93,11 +95,12 @@ public class LoginSteps {
 
     @Entao("deve ser possivel logar no sistema")
     public void deveSerPossivelLogarNoSistema() {
-
+        Assert.assertEquals(username, loginPage.getUsuarioLogado());
     }
 
     @Entao("o sistema deve exibir uma mensagem de erro")
     public void oSistemaDeveExibirUmaMensagemDeErro() {
+Assert.assertEquals("Incorrect user name or password.", loginPage.getErroLogin());
     }
 
     @Entao("o botao sign in deve permanecer desabilitado")
