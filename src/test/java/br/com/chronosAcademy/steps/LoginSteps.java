@@ -6,6 +6,7 @@ import br.com.chronosAcademy.pages.LoginPage;
 import br.com.chronosAcademy.pages.NewAccountPage;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
+import io.cucumber.java.Scenario;
 import io.cucumber.java.pt.Dado;
 import io.cucumber.java.pt.Entao;
 import io.cucumber.java.pt.Quando;
@@ -18,13 +19,17 @@ public class LoginSteps {
     LoginPage loginPage;
     String username;
     @Before
-    public void iniciaNavegador(){
+    public void iniciaNavegador(Scenario cenario){
         new Driver(Browser.CHROME);
+        Driver.getNomeCenario(cenario.getName());
+        Driver.criaDiretorio();
     }
 
     @After
-    public void fechaNavegador(){
+    public void fechaNavegador(Scenario cenario){
         Driver.getDriver().quit(); //close fecha só o navegador mas não fecha o driver ocupando espaco na memoria
+        System.out.println(cenario.getStatus());
+        System.out.println(cenario.isFailed());
     }
 
     @Dado("que o modal esteja sendo exibida")
