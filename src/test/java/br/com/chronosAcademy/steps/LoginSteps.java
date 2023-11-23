@@ -119,4 +119,12 @@ Assert.assertEquals("Incorrect user name or password.", loginPage.getErroLogin()
         boolean enabled = loginPage.isBtnSignIn();
         Assert.assertFalse(enabled);
     }
+
+    @Dado("que esteja logado no sistema com")
+    public void queEstejaLogadoNoSistema(Map<String, String> map) throws IOException {
+        queOModalEstejaSendoExibida();
+        osCamposDeLoginForemPreenchidosDaSeguinteForma(map);
+        forRealizadoUmCliqueNoBotaoSignIn();
+        deveSerPossivelLogarNoSistema();
+    }
 }
