@@ -22,4 +22,7 @@ public class MyAccountMap {
 
     @FindBy(css = ".deleteRed")
     public WebElement btnYes;
+
+    @FindBy(css = ".modificationTwo > p")
+    public WebElement textDelete;
 }

@@ -39,4 +39,6 @@ public class NewAccountSteps {
         Assert.assertEquals(username, loginPage.getUsuarioLogado());
 
     }
+
+
 }

@@ -25,8 +25,9 @@ public class MyAccountPage {
     }
 
     public void clickLinkEdit(){
-        Driver.visibilityOf(myAccountMap.linkMyAccount);
-        myAccountMap.linkMyAccount.click();
+
+        Driver.visibilityOf(myAccountMap.linkEdit);
+        myAccountMap.linkEdit.click();
     }
 
     public String getTextUsuario(){
@@ -42,5 +43,10 @@ public class MyAccountPage {
     public void clickBtnYes(){
         Driver.visibilityOf((myAccountMap.btnYes));
         myAccountMap.btnYes.click();
+    }
+
+    public String getTextDelete(){
+        Driver.visibilityOf(myAccountMap.textDelete);
+        return myAccountMap.textDelete.getText();
     }
 }
